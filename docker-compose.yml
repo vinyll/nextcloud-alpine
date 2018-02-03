@@ -4,7 +4,7 @@ services:
   web:
     image: nextcloud-alpine
     volumes:
-      - ./data:/data
+      - ./data:/usr/share/webapps/nextcloud/config
       - ./config:/usr/share/webapps/nextcloud/config
     ports:
       - "8080:8080"

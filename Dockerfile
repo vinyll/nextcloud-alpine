@@ -1,5 +1,7 @@
-FROM alpine
-
+#  Uncomment for x86 based systems
+#FROM alpine
+#  Uncomment for Rasperry Pi and other ARM
+FROM arm32v6/alpine
 
 RUN apk --update del php5
 
@@ -18,5 +20,5 @@ WORKDIR /usr/share/webapps/nextcloud
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint.sh"]
 
-VOLUME ["/data"]
+VOLUME ["/usr/share/webapps/nextcloud/data", "/usr/share/webapps/nextcloud/config"]
 EXPOSE 8080
