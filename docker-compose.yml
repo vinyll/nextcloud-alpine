@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  web:
+    image: nextcloud-alpine
+    volumes:
+      - ./data:/data
+      - ./config:/usr/share/webapps/nextcloud/config
+    ports:
+      - "8080:8080"
