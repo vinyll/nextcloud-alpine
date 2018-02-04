@@ -20,5 +20,5 @@ WORKDIR /usr/share/webapps/nextcloud
 COPY entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["entrypoint.sh"]
 
-VOLUME ["/usr/share/webapps/nextcloud/data", "/usr/share/webapps/nextcloud/config"]
+VOLUME ["/data", "/usr/share/webapps/nextcloud/config"]
 EXPOSE 8080
