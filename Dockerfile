@@ -3,10 +3,6 @@
 #  Uncomment for Rasperry Pi and other ARM
 FROM arm32v6/alpine
 
-ARG UID=1000
-ARG GID=1000
-ARG UNAME=pi
-
 RUN apk --update del php5
 
 RUN apk add \
