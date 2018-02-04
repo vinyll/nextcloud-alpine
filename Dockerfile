@@ -3,20 +3,25 @@
 #  Uncomment for Rasperry Pi and other ARM
 FROM arm32v6/alpine
 
+ARG UID=1000
+ARG GID=1000
+ARG UNAME=pi
+
 RUN apk --update del php5
 
 RUN apk add \
   nextcloud-sqlite \
   php7-fpm
 
-RUN addgroup -g 1000 -S pi && \
-  adduser -u 1000 -D -S -G pi pi && \
-  chown -R pi:pi /usr/share/webapps/nextcloud && \
+RUN sed -i "s/:${GID}:/:40:/g" /etc/group && \
+  addgroup -g $GID -S $UNAME && \
+  adduser -u $UID -D -S -G $GID $UNAME && \
+  chown -R $UID:$GID /usr/share/webapps/nextcloud && \
   mkdir /data && \
-  chown -R pi:pi /data && \
+  chown -R $UID:$GID /data && \
   chmod 0770 /data
 
-USER pi
+USER $UNAME
 
 WORKDIR /usr/share/webapps/nextcloud
 
