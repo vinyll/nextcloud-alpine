@@ -9,13 +9,15 @@ RUN apk add \
   nextcloud-sqlite \
   php7-fpm
 
-RUN mkdir /data && \
-  chown -R nextcloud:www-data /data && \
-  chmod 0770 /data && \
-  addgroup -g 1000 -S pi && \
-  adduser -u 1000 -D -S -G pi pi
+RUN addgroup -g 1000 -S pi && \
+  adduser -u 1000 -D -S -G pi pi && \
+  chown -R pi:pi /usr/share/webapps/nextcloud && \
+  mkdir /data && \
+  chown -R pi:pi /data && \
+  chmod 0770 /data
 
 USER pi
+
 WORKDIR /usr/share/webapps/nextcloud
 
 COPY entrypoint.sh /usr/local/bin/
